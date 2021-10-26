@@ -37,16 +37,16 @@ namespace code_route
             // 
             // pictureBox1
             // 
-            this.pictureBox1.Location = new System.Drawing.Point(22, 27);
+            this.pictureBox1.Location = new System.Drawing.Point(12, 12);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(391, 281);
+            this.pictureBox1.Size = new System.Drawing.Size(120, 120);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pictureBox1.TabIndex = 0;
             this.pictureBox1.TabStop = false;
             // 
             // changeImgBtn
             // 
-            this.changeImgBtn.Location = new System.Drawing.Point(439, 38);
+            this.changeImgBtn.Location = new System.Drawing.Point(169, 25);
             this.changeImgBtn.Name = "changeImgBtn";
             this.changeImgBtn.Size = new System.Drawing.Size(186, 50);
             this.changeImgBtn.TabIndex = 1;
@@ -58,9 +58,9 @@ namespace code_route
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Arial Rounded MT Bold", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(434, 130);
+            this.label1.Location = new System.Drawing.Point(165, 103);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(86, 29);
+            this.label1.Size = new System.Drawing.Size(69, 23);
             this.label1.TabIndex = 2;
             this.label1.Text = "label1";
             // 
@@ -68,7 +68,7 @@ namespace code_route
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1077, 378);
+            this.ClientSize = new System.Drawing.Size(1077, 167);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.changeImgBtn);
             this.Controls.Add(this.pictureBox1);
