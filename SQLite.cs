@@ -59,8 +59,8 @@ namespace code_route
             sqlite_cmd.ExecuteNonQuery();
         }
 
-        // TEMP
-        public void ReadData(SQLiteConnection conn)
+        // Recueille les données de tous les tableaux (nom du fichier + description)
+        public List<string[]> ReadData(SQLiteConnection conn)
         {
             SQLiteDataReader sqlite_datareader;
             SQLiteCommand sqlite_cmd;
@@ -68,14 +68,15 @@ namespace code_route
             sqlite_cmd.CommandText = "SELECT * FROM t_panneaux";
 
             sqlite_datareader = sqlite_cmd.ExecuteReader();
+            
+            List<string[]> allStrings = new List<string[]>();
             while (sqlite_datareader.Read())
             {
-                // TEMP
-                string roadSignFileName = sqlite_datareader.GetString(1);
-                string roadSignName = sqlite_datareader.GetString(2);
-                Debug.WriteLine(roadSignFileName + " \t\t\t\t " + roadSignName);
+                string[] currentRow = { sqlite_datareader.GetString(1), sqlite_datareader.GetString(2) };
+                allStrings.Add(currentRow);
             }
             conn.Close();
+            return allStrings;
         }
     }
 }
