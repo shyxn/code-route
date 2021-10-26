@@ -1,9 +1,0 @@
-Prendre une tranche de 30 questions
-
-doit répondre juste 2 fois à la même question pour qu'elle soit considérée comme maîtrisée
-
-si faux : permettre de réécrire la question avec la réponse affichée
-
-Une fois la tranche de 30 questions finie, passer à la suite
-
-(compteur du nombre de questions maîtrisées)
