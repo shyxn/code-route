@@ -25,18 +25,36 @@ namespace code_route
             InitializeComponent();
         }
 
-        private void changeImgBtn_Click(object sender, EventArgs e)
-        {
-            this._controller.ChangeImage();
-        }
         public void DrawImage(string filePath)
         {
             this.pictureBox1.Image = new Bitmap(filePath);
             this.pictureBox1.Visible = true;
         }
-        public void ChangeLabel(string text)
+        public void UpdateProgressionLabel(int data, int max)
         {
-            this.label1.Text = text;
+            this.progressionLabel.Text = "Progression : " + data + " / " + max + " questions";
+        }
+
+        private void textBox1_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar == (char)13)
+            {
+                this._controller.CheckQuestion(this.textBox1.Text);
+            }
+        }
+        public void ShowAnswer(string answer)
+        {
+            this.textBox1.Clear();
+            this.label1.Text = answer;
+        }
+        public void HideAnswer()
+        {
+            this.textBox1.Clear();
+            this.label1.Text = "";
+        }
+        public void UpdatePortionScore(int currentScore, int max)
+        {
+            this.PortionLabel.Text = "Portion : " + currentScore + " / " + max + " questions";
         }
     }
 }

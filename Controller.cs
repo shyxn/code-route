@@ -12,37 +12,158 @@ namespace code_route
     {
         private Model _model;
         private Form1 _view;
-        // temp
-        private int _imgCount = 0;
-
+        private List<string[]> _currentPortion = new List<string[]>();
+        private List<string[]> _currentPortionAnswered = new List<string[]>();
+        private int _masteredAnswers = 0;
+        private string[] _currentAnswer = new string[2];
+        private List<string[]> _remainingquestions = new List<string[]>();
+        private int _portionIndex;
+        private bool _isChecking = false;
+        private int _portionLength = 5;
         public Controller(Model model, Form1 view)
         {
             this._model = model;
             this._view = view;
             InitMVC();
-            TestRecords();
+            SetGame();
+            SetPortion();
+            SetQuestion();
+            
         }
         private void InitMVC()
         {
             this._view.Controller = this;
             this._model.Controller = this;
         }
-        public void ChangeImage()
+        public void ChangeImage(string stringImgPath)
         {
-            //Random rnd = new Random();
-            //int rndNumber = rnd.Next();
-            string[] currentRow = this._model.GetCurrentRow(this._imgCount);
-            string stringImgPath = currentRow[0];
             string filePath = Environment.CurrentDirectory + "\\assets\\allroadsigns\\" + stringImgPath;
-            string answer = currentRow[1];
-            this._imgCount++;
-
-
             this._view.DrawImage(filePath);
-            this._view.ChangeLabel(answer);
 
         }
-        
+        public void CheckQuestion(string answer)
+        {
+            bool partiallyMastered = false;
+            // Regarder si la réponse a déjà été maîtrisée
+            if (this._currentPortionAnswered.Count > 0)
+            {
+                foreach (string[] rowAnswered in this._currentPortionAnswered)
+                {
+                    // effectivement présente -> maîtrisé
+                    if (rowAnswered == this._currentAnswer)
+                    {
+                        partiallyMastered = true;
+                    }
+                }
+            }
+
+            if (this._isChecking)
+            {
+                if (answer == this._currentAnswer[1])
+                {
+                    SetQuestion();
+                }
+                else
+                {
+                    this._view.ShowAnswer(this._currentAnswer[1]);
+                }
+            }
+            else
+            {
+                // si la réponse est correcte
+                if (answer == this._currentAnswer[1])
+                {
+                    if (partiallyMastered)
+                    {
+                        // -> maîtrisé
+                        this._currentPortion.RemoveAt(this._portionIndex);
+                        this._masteredAnswers++;
+                    }
+                    else
+                    {
+                        // Si pas présente -> 1ère bonne réponse
+                        this._currentPortionAnswered.Add(this._currentAnswer);
+                    }
+                    SetQuestion();
+                }
+                // si la réponse est incorrecte
+                else
+                {
+                    if (partiallyMastered && this._currentPortionAnswered.Remove(this._currentAnswer))
+                    {
+                        Debug.WriteLine("La maîtrise a été perdue.");
+                    }
+                    this._isChecking = true;
+                    this._view.ShowAnswer(this._currentAnswer[1]);
+                }
+            }
+        }
+        // Sélection d'une question au hasard et affichage de l'image
+        private void SetQuestion()
+        {
+            if (this._currentPortion.Count == 0)
+            {
+                SetPortion();
+            }
+            this._view.UpdatePortionScore(5 - this._currentPortion.Count, this._portionLength);
+            this._view.HideAnswer();
+            this._view.UpdateProgressionLabel(this._masteredAnswers, this._model.AllRoadSignsData.Count);
+            this._isChecking = false;
+            int newIndex = 0;
+            Random rnd = new Random();
+
+            // Ne pas permettre la même question précédente
+            if (this._currentPortion.Count > 1)
+            {
+                do
+                {
+                    newIndex = rnd.Next(this._currentPortion.Count);
+
+                } while (newIndex == this._portionIndex);
+            }
+            
+            this._portionIndex = newIndex;
+            this._currentAnswer = this._currentPortion[this._portionIndex];
+
+            ChangeImage(this._currentAnswer[0]);
+            
+        }
+        // Remplir currentPortion et vider currentPortionAnswered
+        private void SetPortion()
+        {
+            Debug.WriteLine("Attribution d'une nouvelle portion...");
+            this._portionIndex = 0;
+            if (this._remainingquestions.Count == 0)
+            {
+                SetGame();
+            }
+            this._currentPortion.Clear();
+            this._currentPortionAnswered.Clear();
+            
+            if (this._remainingquestions.Count < this._portionLength)
+            {
+                this._portionLength = this._remainingquestions.Count;
+            }
+            int randomizedIndex;
+            Random rnd = new Random();
+            for (int i = 0; i < this._portionLength; i++)
+            {
+                randomizedIndex = rnd.Next(this._remainingquestions.Count);
+                this._currentPortion.Add(this._remainingquestions[randomizedIndex]);
+                this._remainingquestions.RemoveAt(randomizedIndex);
+            }
+        }
+        private void SetGame()
+        {
+            Debug.WriteLine("Attribution d'une nouvelle partie...");
+            this._masteredAnswers = 0;
+            this._remainingquestions.Clear();
+
+            foreach (string[] row in this._model.AllRoadSignsData)
+            {
+                this._remainingquestions.Add(row);
+            }  
+        }
         private void TestRecords()
         {
             string[] allFiles = this._model.GetFileNames();
