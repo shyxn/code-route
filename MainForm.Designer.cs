@@ -29,6 +29,7 @@ namespace code_route
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
             this.imgQuestionPB = new System.Windows.Forms.PictureBox();
             this.AnswerLbl = new System.Windows.Forms.Label();
             this.ProgressionLabel = new System.Windows.Forms.Label();
@@ -40,7 +41,8 @@ namespace code_route
             // 
             // imgQuestionPB
             // 
-            this.imgQuestionPB.Location = new System.Drawing.Point(12, 12);
+            this.imgQuestionPB.BackColor = System.Drawing.Color.Transparent;
+            this.imgQuestionPB.Location = new System.Drawing.Point(32, 25);
             this.imgQuestionPB.Name = "imgQuestionPB";
             this.imgQuestionPB.Size = new System.Drawing.Size(120, 120);
             this.imgQuestionPB.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
@@ -50,8 +52,9 @@ namespace code_route
             // AnswerLbl
             // 
             this.AnswerLbl.AutoSize = true;
+            this.AnswerLbl.BackColor = System.Drawing.Color.Transparent;
             this.AnswerLbl.Font = new System.Drawing.Font("Arial Rounded MT Bold", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.AnswerLbl.Location = new System.Drawing.Point(12, 157);
+            this.AnswerLbl.Location = new System.Drawing.Point(35, 175);
             this.AnswerLbl.Name = "AnswerLbl";
             this.AnswerLbl.Size = new System.Drawing.Size(114, 23);
             this.AnswerLbl.TabIndex = 2;
@@ -60,8 +63,9 @@ namespace code_route
             // ProgressionLabel
             // 
             this.ProgressionLabel.AutoSize = true;
+            this.ProgressionLabel.BackColor = System.Drawing.Color.Transparent;
             this.ProgressionLabel.Font = new System.Drawing.Font("Arial Rounded MT Bold", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.ProgressionLabel.Location = new System.Drawing.Point(180, 15);
+            this.ProgressionLabel.Location = new System.Drawing.Point(200, 28);
             this.ProgressionLabel.Name = "ProgressionLabel";
             this.ProgressionLabel.Size = new System.Drawing.Size(176, 23);
             this.ProgressionLabel.TabIndex = 3;
@@ -70,7 +74,7 @@ namespace code_route
             // AnswerTxtBox
             // 
             this.AnswerTxtBox.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.AnswerTxtBox.Location = new System.Drawing.Point(168, 92);
+            this.AnswerTxtBox.Location = new System.Drawing.Point(188, 105);
             this.AnswerTxtBox.Name = "AnswerTxtBox";
             this.AnswerTxtBox.Size = new System.Drawing.Size(314, 32);
             this.AnswerTxtBox.TabIndex = 4;
@@ -79,8 +83,9 @@ namespace code_route
             // PortionLabel
             // 
             this.PortionLabel.AutoSize = true;
+            this.PortionLabel.BackColor = System.Drawing.Color.Transparent;
             this.PortionLabel.Font = new System.Drawing.Font("Arial Rounded MT Bold", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.PortionLabel.Location = new System.Drawing.Point(180, 50);
+            this.PortionLabel.Location = new System.Drawing.Point(200, 63);
             this.PortionLabel.Name = "PortionLabel";
             this.PortionLabel.Size = new System.Drawing.Size(143, 23);
             this.PortionLabel.TabIndex = 5;
@@ -89,8 +94,9 @@ namespace code_route
             // CheckLbl
             // 
             this.CheckLbl.AutoSize = true;
+            this.CheckLbl.BackColor = System.Drawing.Color.Transparent;
             this.CheckLbl.Font = new System.Drawing.Font("Arial Rounded MT Bold", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.CheckLbl.Location = new System.Drawing.Point(488, 96);
+            this.CheckLbl.Location = new System.Drawing.Point(508, 109);
             this.CheckLbl.Name = "CheckLbl";
             this.CheckLbl.Size = new System.Drawing.Size(102, 23);
             this.CheckLbl.TabIndex = 2;
@@ -100,7 +106,10 @@ namespace code_route
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1077, 208);
+            this.BackColor = System.Drawing.Color.White;
+            this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
+            this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.ClientSize = new System.Drawing.Size(1107, 269);
             this.Controls.Add(this.PortionLabel);
             this.Controls.Add(this.AnswerTxtBox);
             this.Controls.Add(this.ProgressionLabel);
