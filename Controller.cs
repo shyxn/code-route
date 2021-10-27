@@ -11,7 +11,7 @@ namespace code_route
     public class Controller
     {
         private Model _model;
-        private Form1 _view;
+        private MainForm _view;
         private List<string[]> _currentPortion = new List<string[]>();
         private List<string[]> _currentPortionAnswered = new List<string[]>();
         private int _masteredAnswers = 0;
@@ -20,7 +20,7 @@ namespace code_route
         private int _portionIndex;
         private bool _isChecking = false;
         private int _portionLength = 5;
-        public Controller(Model model, Form1 view)
+        public Controller(Model model, MainForm view)
         {
             this._model = model;
             this._view = view;
@@ -28,7 +28,6 @@ namespace code_route
             SetGame();
             SetPortion();
             SetQuestion();
-            
         }
         private void InitMVC()
         {
@@ -43,6 +42,8 @@ namespace code_route
         }
         public void CheckQuestion(string answer)
         {
+            answer = answer.ToLower();
+            string expectedAnswer = this._currentAnswer[1].ToLower();
             bool partiallyMastered = false;
             // Regarder si la réponse a déjà été maîtrisée
             if (this._currentPortionAnswered.Count > 0)
@@ -59,19 +60,21 @@ namespace code_route
 
             if (this._isChecking)
             {
-                if (answer == this._currentAnswer[1])
+                if (answer == expectedAnswer)
                 {
+                    this._view.SwitchErase();
                     SetQuestion();
                 }
                 else
                 {
+                    this._view.SwitchIncorrect();
                     this._view.ShowAnswer(this._currentAnswer[1]);
                 }
             }
             else
             {
                 // si la réponse est correcte
-                if (answer == this._currentAnswer[1])
+                if (answer == expectedAnswer)
                 {
                     if (partiallyMastered)
                     {
@@ -84,6 +87,7 @@ namespace code_route
                         // Si pas présente -> 1ère bonne réponse
                         this._currentPortionAnswered.Add(this._currentAnswer);
                     }
+                    this._view.SwitchCorrect();
                     SetQuestion();
                 }
                 // si la réponse est incorrecte
@@ -95,6 +99,7 @@ namespace code_route
                     }
                     this._isChecking = true;
                     this._view.ShowAnswer(this._currentAnswer[1]);
+                    this._view.SwitchIncorrect();
                 }
             }
         }
@@ -156,6 +161,7 @@ namespace code_route
         private void SetGame()
         {
             Debug.WriteLine("Attribution d'une nouvelle partie...");
+            this._view.SwitchErase();
             this._masteredAnswers = 0;
             this._remainingquestions.Clear();
 

@@ -17,7 +17,7 @@ namespace code_route
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             Model model = new Model();
-            Form1 view = new Form1();
+            MainForm view = new MainForm();
             Controller control = new Controller(model, view);
             Application.Run(view);
         }

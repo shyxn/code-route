@@ -10,10 +10,10 @@ C:\Users\mrgnl\Desktop\code-route\bin\Debug\EntityFramework.xml
 C:\Users\mrgnl\Desktop\code-route\bin\Debug\EntityFramework.SqlServer.xml
 C:\Users\mrgnl\Desktop\code-route\bin\Debug\System.Data.SQLite.xml
 C:\Users\mrgnl\Desktop\code-route\obj\Debug\code-route.csprojAssemblyReference.cache
-C:\Users\mrgnl\Desktop\code-route\obj\Debug\code_route.Form1.resources
 C:\Users\mrgnl\Desktop\code-route\obj\Debug\code_route.Properties.Resources.resources
 C:\Users\mrgnl\Desktop\code-route\obj\Debug\code-route.csproj.GenerateResource.cache
 C:\Users\mrgnl\Desktop\code-route\obj\Debug\code-route.csproj.CoreCompileInputs.cache
 C:\Users\mrgnl\Desktop\code-route\obj\Debug\code-route.csproj.CopyComplete
 C:\Users\mrgnl\Desktop\code-route\obj\Debug\code-route.exe
 C:\Users\mrgnl\Desktop\code-route\obj\Debug\code-route.pdb
+C:\Users\mrgnl\Desktop\code-route\obj\Debug\code_route.MainForm.resources
